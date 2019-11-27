@@ -1,0 +1,10 @@
+Grammars for generator will look as follows:
+
+start -> line
+start -> lines
+lines -> line line
+lines -> line lines
+line -> NUM line
+line -> CHAR line
+
+*note* terminals are in all caps, non-terminals in all lower.
