@@ -7,37 +7,36 @@ public class Generator
   private HashMap<String, List<String>> map =  new HashMap<String, List<String>>();
   
   /**
-   * The constructor that essentialy fills a hashmap with production keys and their
+   * The constructor that essentially fills a hashmap with production keys and their
    * corresponding production values
    */
   public Generator(File grammar)
   {
     
-    Scanner sc = new Scanner(grammar);
+    Scanner sc;
+	try {
+		sc = new Scanner(grammar);
+	
     
-    while(sc.hasNextLine())
-    {
+		while(sc.hasNextLine())
+		{
       
-      String[] line = sc.nextLine().split("->");
+			String[] line = sc.nextLine().split("->");
       
-      if(!map.containsKey(line[0]))
-      {
+			if(!map.containsKey(line[0]))
+			{
         
-        map.put(line[0], new List<String>());
-        
-      }
+				map.put(line[0], new ArrayList<String>());
+			}
       
-      map.get(line[0]).add(line[1]);
-      
-    }
+			map.get(line[0]).add(line[1]);
+		}
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
-  
-  /**
-   * 
-   */
-  public static void main(String args[])
-  {
-  }
+ 
   
   /**
    * Generates a random input string from the start state
@@ -45,11 +44,11 @@ public class Generator
   public String generate()
   {
     
-    Random rand = new Random(map.get("String").length);
+    Random rand = new Random(map.get("String").size());
     String result = "";
-    String[] rule = map.get("Start").get(rand.nextInt()).split(" ");
+    String[] rule = map.get("Start").get(rand.nextInt(map.get("Start").size())).split(" ");
     
-    for (int i  = 0; i < rule.size; i++)
+    for (int i  = 0; i < rule.length; i++)
     {
       if(!map.containsKey(rule[i]))
       {
@@ -81,6 +80,8 @@ public class Generator
         }
       }
     }
+    
+    return result;
   }
   
     /**
@@ -89,11 +90,11 @@ public class Generator
   public String generate(String production)
   {
     
-    Random rand = new Random(map.get(production).length);
+    Random rand = new Random(map.get(production).size());
     String result = "";
     String[] rule = map.get(production).get(rand.nextInt()).split(" ");
     
-    for (int i  = 0; i < rule.size; i++)
+    for (int i  = 0; i < rule.length; i++)
     {
       if(!map.containsKey(rule[i]))
       {
@@ -125,5 +126,6 @@ public class Generator
         }
       }
     }
+	return result;
   }
 }
