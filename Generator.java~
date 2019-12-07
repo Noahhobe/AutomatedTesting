@@ -35,7 +35,6 @@ public class Generator
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    
   }
   
   
@@ -45,7 +44,7 @@ public class Generator
   public String generate()
   {
     
-    Random rand = new Random(map.get("Start").size());
+    Random rand = new Random(map.get("String").size());
     String result = "";
     String[] rule = map.get("Start").get(rand.nextInt(map.get("Start").size())).split(" ");
     

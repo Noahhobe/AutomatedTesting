@@ -1,0 +1,3 @@
+Start->char CHARS
+CHARS->char CHARS
+CHARS->char
