@@ -3,7 +3,8 @@ import java.io.*;
 
 public class Generator
 {
-	String alphabet = "abcdefghijklmnopqrstuvwxyz"; 
+  String alphabet = "abcdefghijklmnopqrstuvwxyz";
+  String numbers = "1234567890";
   /**/
   private HashMap<String, List<String>> map =  new HashMap<String, List<String>>();
   
@@ -29,7 +30,6 @@ public class Generator
           
           map.put(line[0], new ArrayList<String>());
         }
-        
         map.get(line[0]).add(line[1]);
       }
     } catch (FileNotFoundException e) {
@@ -62,7 +62,7 @@ public class Generator
         else if(rule[i].equals("CHAR"))
         {
           Random r = new Random();
-          result += alphabet.charAt(rand.nextInt(26));
+          result += alphabet.charAt(r.nextInt(26));
         }
         else if(rule[i].equals("BOOL"))
         {
@@ -76,10 +76,13 @@ public class Generator
             result += "false";
           }
         }
-        else
+        else if(rule[i].equals("EPSILON"))
         {
-          result += generate(rule[i]);
         }
+      }
+      else
+      {
+        result += generate(rule[i]);
       }
     }
     
@@ -93,7 +96,7 @@ public class Generator
   {
     Random rand = new Random(map.get(production).size());
     String result = "";
-    String[] rule = map.get(production).get(rand.nextInt()).split(" ");
+    String[] rule = map.get(production).get(rand.nextInt(map.get(production).size())).split(" ");
     
     for (int i  = 0; i < rule.length; i++)
     {
@@ -101,30 +104,35 @@ public class Generator
       {
         if(rule[i].equals("NUM"))
         {
+          //Random r = new Random();
+          //result += numbers.charAt(r.nextInt(10));
           Random r = new Random(10);
-          result += r.nextInt() + " ";
+          result += r.nextInt() + "";
         } 
         else if(rule[i].equals("CHAR"))
         {
           Random r = new Random();
-          result += alphabet.charAt(rand.nextInt(26));
+          result += alphabet.charAt(r.nextInt(26));
         }
         else if(rule[i].equals("BOOL"))
         {
           Random r = new Random(2);
           if(r.nextInt() == 1)
           {
-            String s = "true";
+            result += "true";
           }
           else
           {
-            String s = "false";
+            result += "false";
           }
         }
-        else
+        else if(rule[i].equals("EPSILON"))
         {
-          result += generate(rule[i]);
         }
+      }
+      else
+      {
+        result += generate(rule[i]);
       }
     }
     return result;
