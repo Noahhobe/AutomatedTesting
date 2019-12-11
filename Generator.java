@@ -45,25 +45,25 @@ public class Generator
   public String generate()
   {
     
-    Random rand = new Random(map.get("Start").size());
+    Random rand = new Random(map.get("start").size());
     String result = "";
-    String[] rule = map.get("Start").get(rand.nextInt(map.get("Start").size())).split(" ");
+    String[] rule = map.get("start").get(rand.nextInt(map.get("start").size())).split(" ");
     
     for (int i  = 0; i < rule.length; i++)
     {
       if(!map.containsKey(rule[i]))
       {
-        if(rule[i].equals("num"))
+        if(rule[i].equals("NUM"))
         {
           Random r = new Random(10);
           result += r.nextInt() + " ";
         } 
-        else if(rule[i].equals("char"))
+        else if(rule[i].equals("CHAR"))
         {
           Random r = new Random();
           String s = (String)(r.nextInt(26) + "a");
         }
-        else if(rule[i].equals("boolean"))
+        else if(rule[i].equals("BOOL"))
         {
           Random r = new Random(2);
           if(r.nextInt() == 1)
@@ -99,17 +99,17 @@ public class Generator
     {
       if(!map.containsKey(rule[i]))
       {
-        if(rule[i].equals("num"))
+        if(rule[i].equals("NUM"))
         {
           Random r = new Random(10);
           result += r.nextInt() + " ";
         } 
-        else if(rule[i].equals("char"))
+        else if(rule[i].equals("CHAR"))
         {
           Random r = new Random();
           String s = (String)(r.nextInt(26) + "a");
         }
-        else if(rule[i].equals("boolean"))
+        else if(rule[i].equals("BOOL"))
         {
           Random r = new Random(2);
           if(r.nextInt() == 1)
