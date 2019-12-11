@@ -3,6 +3,7 @@ import java.io.*;
 
 public class Generator
 {
+	String alphabet = "abcdefghijklmnopqrstuvwxyz"; 
   /**/
   private HashMap<String, List<String>> map =  new HashMap<String, List<String>>();
   
@@ -61,18 +62,18 @@ public class Generator
         else if(rule[i].equals("CHAR"))
         {
           Random r = new Random();
-          String s = (String)(r.nextInt(26) + "a");
+          result += alphabet.charAt(rand.nextInt(26));
         }
         else if(rule[i].equals("BOOL"))
         {
           Random r = new Random(2);
           if(r.nextInt() == 1)
           {
-            String s = "true";
+            result += "true";
           }
           else
           {
-            String s = "false";
+            result += "false";
           }
         }
         else
@@ -90,7 +91,6 @@ public class Generator
    */
   public String generate(String production)
   {
-    
     Random rand = new Random(map.get(production).size());
     String result = "";
     String[] rule = map.get(production).get(rand.nextInt()).split(" ");
@@ -107,7 +107,7 @@ public class Generator
         else if(rule[i].equals("CHAR"))
         {
           Random r = new Random();
-          String s = (String)(r.nextInt(26) + "a");
+          result += alphabet.charAt(rand.nextInt(26));
         }
         else if(rule[i].equals("BOOL"))
         {
