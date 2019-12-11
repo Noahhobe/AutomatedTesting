@@ -1,3 +1,3 @@
-Start->char CHARS
-CHARS->char CHARS
-CHARS->char
+start->CHAR chars
+chars->CHAR chars
+chars->CHAR
