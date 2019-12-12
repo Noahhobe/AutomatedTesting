@@ -64,6 +64,7 @@ public class Tester {
     Process pro = Runtime.getRuntime().exec(command);
     pro.waitFor();
     System.out.println(command + " exitValue() " + pro.exitValue());
+   // System.out.println("Result of test: " + pro.getInputStream());
   }
   
 // code for complex grammars/ multi param programs    
