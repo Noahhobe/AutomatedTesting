@@ -4,6 +4,7 @@ import java.io.*;
 public class Generator
 {
   String alphabet = "abcdefghijklmnopqrstuvwxyz";
+  String capsAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   String numbers = "1234567890";
   /**/
   private HashMap<String, List<String>> map =  new HashMap<String, List<String>>();
@@ -64,6 +65,11 @@ public class Generator
           Random r = new Random();
           result += alphabet.charAt(r.nextInt(26));
         }
+        else if(rule[i].equals("CAP"))
+        {
+          Random r = new Random();
+          result += capsAlpha.charAt(r.nextInt(26));
+        }
         else if(rule[i].equals("WS"))
         {
           result += " ";
@@ -115,6 +121,11 @@ public class Generator
         {
           Random r = new Random();
           result += alphabet.charAt(r.nextInt(26));
+        }
+        else if(rule[i].equals("CAP"))
+        {
+          Random r = new Random();
+          result += capsAlpha.charAt(r.nextInt(26));
         }
         else if(rule[i].equals("WS"))
         {

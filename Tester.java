@@ -39,7 +39,7 @@ public class Tester {
         String testValue = gen.generate();
         System.out.println("Testing with value: " + testValue);
         System.out.println("*******");
-        runProcess("java -cp " + program + " " + testValue);
+        runProcess("java " + program + " " + testValue);
         System.out.println("End of test " + (i + 1));
         System.out.println("*******************************");
       }
