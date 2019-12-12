@@ -1,0 +1,19 @@
+start-> CAP chars
+chars->CHAR chars
+chars->CHAR WS chars
+chars->VOWEL chars
+chars->CHAR CHAR chars
+chars->CHAR VOWEL CHAR chars
+chars->CHAR
+startInt->nums
+startInt->NEG nums
+nums->NUM nums
+nums->num
+num->NUM
+num->EPSILON
+startDouble->doubs
+startDouble->doubs doubs
+startDouble->NEG doubs
+doubs->NUM doubs
+doubs->DOT doub
+doub->NUM

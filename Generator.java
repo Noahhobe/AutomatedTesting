@@ -119,6 +119,10 @@ public class Generator
           Random r = new Random();
           result += numbers.charAt(r.nextInt(10));
         } 
+        else if(rule[i].equals("NEG"))
+        {
+          result += "-";
+        }
         else if(rule[i].equals("CHAR"))
         {
           Random r = new Random();
@@ -129,7 +133,7 @@ public class Generator
           Random r = new Random();
           result += capsAlpha.charAt(r.nextInt(26));
         }
-                else if(rule[i].equals("VOWEL"))
+        else if(rule[i].equals("VOWEL"))
         {
           Random r = new Random();
           result += vowels.charAt(r.nextInt(5));
@@ -187,6 +191,10 @@ public class Generator
           Random r = new Random(10);
           result += r.nextInt() + "";
         } 
+        else if(rule[i].equals("NEG"))
+        {
+          result += "-";
+        }
         else if(rule[i].equals("EPSILON"))
         {
         }
@@ -199,7 +207,7 @@ public class Generator
     return result;
   }
   
-   
+  
   
   /**
    * targeted generator doubles
