@@ -5,6 +5,8 @@ public class Generator
 {
   String alphabet = "abcdefghijklmnopqrstuvwxyz";
   String capsAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  String vowels = "aeiou";
+  String sometimeVowels = "aeiouy";
   String numbers = "1234567890";
   /**/
   private HashMap<String, List<String>> map =  new HashMap<String, List<String>>();
@@ -100,7 +102,7 @@ public class Generator
   }
   
   /**
-   * recursive call V1
+   * recursive call V1 string
    */
   public String generate(String production)
   {
@@ -126,6 +128,11 @@ public class Generator
         {
           Random r = new Random();
           result += capsAlpha.charAt(r.nextInt(26));
+        }
+                else if(rule[i].equals("VOWEL"))
+        {
+          Random r = new Random();
+          result += vowels.charAt(r.nextInt(5));
         }
         else if(rule[i].equals("WS"))
         {
@@ -161,7 +168,7 @@ public class Generator
   
   
   /**
-   * targeted generator V1
+   * targeted generator ints
    */
   public String generateInt()
   {
@@ -192,8 +199,10 @@ public class Generator
     return result;
   }
   
+   
+  
   /**
-   * targeted generator V1
+   * targeted generator doubles
    */
   public String generateDouble()
   {
@@ -214,7 +223,7 @@ public class Generator
         } 
         else if(rule[i].equals("DOT"))
         {
-          result+= ".";
+          result += ".";
         }
         else if(rule[i].equals("EPSILON"))
         {
@@ -226,8 +235,6 @@ public class Generator
       }
     }
     return result;
-  }
-  
-  
+  } 
   
 }

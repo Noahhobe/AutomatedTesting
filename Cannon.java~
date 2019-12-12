@@ -23,23 +23,27 @@ public class Cannon extends Program
   /**
    * Runs the cannon simulation
    */
-  private double v0, A;
   
-  public void run()
+  
+  public static void main (String []args)
   {
     //---
     
-    v0 = readDouble("What initial velocity would you like to shoot the cannon?");
-    A = readDouble("What angle should the cannnon be fired at?");
-    
+    int v0 = Integer.parseInt(args[0]);
+    double A = 30.0;//Double.parseDouble(args[1]);
+    double timeToGround = 0.0;
+    double t  = 0.0;
+    double distance = 0.0;
+    double height = 0.0;
+      
     for (int i=0; i<=20; i++)
     {
     // ez-pz
-    double timeToGround = timeToHit(v0, A);
-    double t = i * (timeToGround / 20);
-    double distance = distanceToHit(v0, A, t);
-    double height = height(v0, A, t);
-    println(String.format("%7.3f   %7.3f   %7.3f", t, height, distance));
+    timeToGround = timeToHit(v0, A);
+    t = i * (timeToGround / 20);
+    distance = distanceToHit(v0, A, t);
+    height = height(v0, A, t);
+    System.out.println(String.format("TIME: %7.3f   HEIGHT: %7.3f   DISTANCE: %7.3f", t, height, distance));
     }
   }
 
@@ -58,7 +62,7 @@ public class Cannon extends Program
   
   
   
-  public double height(double v0, double A, double t)
+  public static double height(double v0, double A, double t)
   {
     double theHeight;
     //theHeight so the method and object have different names
@@ -69,7 +73,7 @@ public class Cannon extends Program
   
   
   
-  public double distance(double v0, double A, double t)
+  public static double distance(double v0, double A, double t)
   {
     double theDistance;
     //theDistance so the method and object have different names
@@ -81,7 +85,7 @@ public class Cannon extends Program
  
   
   
-  public double timeToHit(double v0, double A)
+  public static double timeToHit(double v0, double A)
   {
   double timeToGround = -(2 * (v0*sin(toRadians(A)) / GRAVITY));
   return timeToGround;
@@ -89,7 +93,7 @@ public class Cannon extends Program
     
   
   
-  public double distanceToHit(double v0, double A, double timeToGround)
+  public static double distanceToHit(double v0, double A, double timeToGround)
   {
   double distanceTraveled = (v0 * cos(toRadians(A)) * timeToGround);
   return distanceTraveled;

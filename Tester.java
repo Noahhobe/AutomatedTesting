@@ -8,6 +8,12 @@ import java.io.*;
  */
 public class Tester {
   
+  
+  // how does static work? who knows, who cares. it does
+  static int l = 0;
+  static String[] type = new String[10];
+  
+  
   public Tester() {
     
   }
@@ -17,6 +23,7 @@ public class Tester {
     
     /**
      * Reads in the grammar file name, name of program to test, and number of times to test 
+     * now generates multiple parameters with the newGen method
      */
     Scanner scan = new Scanner(System.in);
     System.out.println("Enter a file path for a grammar: ");
@@ -25,21 +32,28 @@ public class Tester {
     String program = scan.next();
     System.out.println("How many times would you like to test?");
     int numTests = scan.nextInt();
-    
     try
     {
       Generator gen = new Generator(new File(grammar));
       
+      System.out.println("How many inputs does the program take?");
+      l = scan.nextInt();
+      String tValue = "";
+      for(int j=0; j<l; j++)
+      {
+        System.out.println("Enter the type of input the program takes: ");
+        type[j] = scan.next();
+      }
       
-
       for(int i = 0; i < numTests; i++)
       {
         runProcess("pwd");
         System.out.println("*******");
-        String testValue = gen.generate();
-        System.out.println("Testing with value: " + testValue);
+        
+        tValue = nextGen(gen);
+        System.out.println("Testing with value: " + tValue);
         System.out.println("*******");
-        runProcess("java " + program + " " + testValue);
+        runProcess("java " + program + " " + tValue);
         System.out.println("End of test " + (i + 1));
         System.out.println("*******************************");
       }
@@ -55,6 +69,34 @@ public class Tester {
   }
   
   /**
+   * allows for multiple parameter generation
+   */
+  public static String nextGen(Generator gen)
+  {
+    String tValue = "";
+    for(int j=0; j<l; j++)
+    {
+      if(type[j].equals("string"))
+      {
+        tValue += gen.generate();
+      }
+      else if(type[j].equals("double"))
+      {
+        tValue += gen.generateDouble();;
+      }
+      else if(type[j].equals("int"))
+      {
+        tValue += gen.generateInt();
+      }
+      if(j!= l-1)
+      {
+        tValue += " ";
+      }
+    }
+    return tValue;
+  }
+  
+  /**
    * This method runs the provided command in the terminal
    * @param command the command to run in the terminal
    * @throws Exception any errors the tested program may throw
@@ -64,32 +106,8 @@ public class Tester {
     Process pro = Runtime.getRuntime().exec(command);
     pro.waitFor();
     System.out.println(command + " exitValue() " + pro.exitValue());
-   // System.out.println("Result of test: " + pro.getInputStream());
+    // System.out.println("Result of test: " + pro.getInputStream());
   }
   
-// code for complex grammars/ multi param programs    
-//      System.out.println("How many inputs does the program?");
-//      int l = scan.nextInt();
-//      String[] arg = new String[l]; 
-//      for(int j=0; j<l; j++)
-//      {
-//        System.out.println("Enter the type of input the program takes: ");
-//        String type = scan.next();
-//        if(type == "string")
-//        {
-//          arg[j] = gen.generate();
-//        }
-//        else if(type == "double")
-//        {
-//          arg[j] = gen.generateDouble();
-//        }
-//        else if(type == "int")
-//        {
-//          arg[j] = gen.generateInt();
-//        }
-//      }
-      
-      
-      
   
 }
