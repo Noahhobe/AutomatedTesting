@@ -1,0 +1,100 @@
+// sin, cos, toRadians
+import static java.lang.Math.*;
+
+// Program
+import acm.program.Program;
+import acm.program.*;
+
+
+/**
+ * A program that displays a table of a cannon ball's travel from firing until
+ * it hits the ground for a specified initial velocity and angle.
+ *
+ * Noah Hoberg and Joe Munsterteiger based on a template by CSB|SJU Computer Science
+ *         faculty members
+ */
+
+public class Cannon extends Program
+{
+  // acceleration due to gravity at sea level on earth
+  private static final double GRAVITY = -9.80665;
+  //double time, vertVelocity, horizVelocity;
+
+  /**
+   * Runs the cannon simulation
+   */
+  private double v0, A;
+  
+  public void run()
+  {
+    //---
+    
+    v0 = readDouble("What initial velocity would you like to shoot the cannon?");
+    A = readDouble("What angle should the cannnon be fired at?");
+    
+    for (int i=0; i<=20; i++)
+    {
+    // ez-pz
+    double timeToGround = timeToHit(v0, A);
+    double t = i * (timeToGround / 20);
+    double distance = distanceToHit(v0, A, t);
+    double height = height(v0, A, t);
+    println(String.format("%7.3f   %7.3f   %7.3f", t, height, distance));
+    }
+  }
+
+
+  /**
+   * Computes the height of a cannon ball shot from the ground at initial
+   * velocity v0, angle A at t seconds after the shot
+   *
+   * @param v0 the initial velocity in units/second (could be any unit of
+   *           length)
+   * @param A  the firing angle in degrees
+   * @param t  the elapsed time since firing in seconds
+   *
+   * @return   the computed value of the height
+   */
+  
+  
+  
+  public double height(double v0, double A, double t)
+  {
+    double theHeight;
+    //theHeight so the method and object have different names
+    
+    theHeight = (v0 * sin(toRadians(A)) * t) + ((GRAVITY * (t * t)/2));
+    return theHeight; 
+  }
+  
+  
+  
+  public double distance(double v0, double A, double t)
+  {
+    double theDistance;
+    //theDistance so the method and object have different names
+    
+    theDistance = (v0 * cos(toRadians(A)) * t);
+    return theDistance; 
+  }
+  
+ 
+  
+  
+  public double timeToHit(double v0, double A)
+  {
+  double timeToGround = -(2 * (v0*sin(toRadians(A)) / GRAVITY));
+  return timeToGround;
+  }
+    
+  
+  
+  public double distanceToHit(double v0, double A, double timeToGround)
+  {
+  double distanceTraveled = (v0 * cos(toRadians(A)) * timeToGround);
+  return distanceTraveled;
+  }
+
+  //*** Put the remaining three specified functions here using height as a model
+  //*** Be sure to include proper Javadoc comments like the one above
+}
