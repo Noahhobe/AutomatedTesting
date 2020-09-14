@@ -23,8 +23,6 @@ public class Cannon extends Program
   /**
    * Runs the cannon simulation
    */
-  
-  
   public static void main (String []args)
   {
     //---
@@ -36,7 +34,7 @@ public class Cannon extends Program
     double distance = 0.0;
     double height = 0.0;
       
-    for (int i=0; i<=20; i++)
+    for (int i = 0; i <= 20; i++)
     {
     // ez-pz
     timeToGround = timeToHit(v0, A);
@@ -59,15 +57,12 @@ public class Cannon extends Program
    *
    * @return   the computed value of the height
    */
-  
-  
-  
   public static double height(double v0, double A, double t)
   {
     double theHeight;
     //theHeight so the method and object have different names
     
-    theHeight = (v0 * sin(toRadians(A)) * t) + ((GRAVITY * (t * t)/2));
+    theHeight = (v0 * sin(toRadians(A)) * t) + ((GRAVITY * (t * t) / 2));
     return theHeight; 
   }
   
@@ -87,7 +82,7 @@ public class Cannon extends Program
   
   public static double timeToHit(double v0, double A)
   {
-  double timeToGround = -(2 * (v0*sin(toRadians(A)) / GRAVITY));
+  double timeToGround = -(2 * (v0 * sin(toRadians(A)) / GRAVITY));
   return timeToGround;
   }
     

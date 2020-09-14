@@ -30,7 +30,7 @@ public class Cannon extends Program
     //---
     
     int v0 = Integer.parseInt(args[0]);
-    double A = 30.0;//Double.parseDouble(args[1]);
+    double A = Double.parseDouble(args[1]);
     double timeToGround = 0.0;
     double t  = 0.0;
     double distance = 0.0;

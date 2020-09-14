@@ -9,10 +9,9 @@ startInt->nums
 nums->NUM nums
 nums->num
 num->NUM
-num->EPSILON
 startDouble->doubs
-startDouble->doubs doubs
 startDouble->NEG doubs
 doubs->NUM doubs
-doubs->DOT doub
+doubs->NUM NUM doubs
+doubs->DOT nums
 doub->NUM
