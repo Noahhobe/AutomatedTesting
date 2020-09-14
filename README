@@ -8,3 +8,5 @@ line -> NUM line
 line -> CHAR line
 
 *note* terminals are in all caps, non-terminals in all lower.
+
+SuperGrammar.txt is the active grammer, it interacts with the Generator. I try to run it through the auxillary program TesterV2, which seems to work but I dont capture output.
